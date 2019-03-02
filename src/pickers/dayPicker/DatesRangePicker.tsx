@@ -68,7 +68,7 @@ class DatesRangePicker extends RangeSelectionPicker<DatesRangePickerProps>
       minDate,
       maxDate,
       marked,
-      markedTip,
+      markedtip,
       markColor,
       localization,
       ...rest
@@ -92,7 +92,7 @@ class DatesRangePicker extends RangeSelectionPicker<DatesRangePickerProps>
         currentRangeHeadingValue={this.getSelectedRange()}
         activeRange={this.getActiveCellsPositions()}
         markedItemIndexes={this.getMarkedPositions()}
-        markedTipIndexes={this.getMarkedTipsPositions()}
+        markedtipIndexes={this.getMarkedTipsPositions()}
         markColor={markColor}
         disabledItemIndexes={this.getDisabledPositions()}
         localization={localization}
@@ -124,10 +124,10 @@ class DatesRangePicker extends RangeSelectionPicker<DatesRangePickerProps>
       Return position numbers of dates that should be displayed as marked
       (position in array returned by `this.buildCalendarValues`).
     */
-    const { marked, markedTip } = this.props;
+    const { marked, markedtip } = this.props;
 
     if (marked) {
-      return getMarkedTips(marked, markedTip, this.state.date, DAYS_ON_PAGE);
+      return getMarkedTips(marked, markedtip, this.state.date, DAYS_ON_PAGE);
     } else {
       return [];
     }

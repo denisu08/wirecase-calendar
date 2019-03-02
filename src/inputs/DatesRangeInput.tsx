@@ -96,7 +96,7 @@ class DatesRangeInput extends BaseInput<DatesRangeInputProps, BaseInputState> {
       PropTypes.arrayOf(CustomPropTypes.momentObj),
       PropTypes.arrayOf(CustomPropTypes.dateObject),
     ]),
-    markedTip: PropTypes.any,
+    markedtip: PropTypes.array,
     markColor: PropTypes.string,
     /** Moment date localization. */
     localization: PropTypes.string,
@@ -144,7 +144,7 @@ class DatesRangeInput extends BaseInput<DatesRangeInputProps, BaseInputState> {
       dateFormat,
       markColor,
       marked,
-      markedTip,
+      markedtip,
       initialDate,
       localization,
       minDate,
@@ -174,7 +174,7 @@ class DatesRangeInput extends BaseInput<DatesRangeInputProps, BaseInputState> {
         start={start}
         end={end}
         marked={markedParsed}
-        markedTip={markedTip}
+        markedtip={markedtip}
         markColor={markColor}
         minDate={parseValue(minDate, dateFormat, localization)}
         maxDate={parseValue(maxDate, dateFormat, localization)}

@@ -62,7 +62,7 @@ class DatesRangeView extends BaseCalendarView<DatesRangeViewProps, any> {
       inline,
       markColor,
       markedItemIndexes,
-      markedTipIndexes,
+      markedtipIndexes,
       localization,
       ...rest
     } = this.props;
@@ -94,7 +94,7 @@ class DatesRangeView extends BaseCalendarView<DatesRangeViewProps, any> {
           hovered={hoveredItemIndex}
           markColor={markColor}
           marked={markedItemIndexes}
-          markedTip={markedTipIndexes}
+          markedtip={markedtipIndexes}
           active={getActive(start, end)}
           disabled={disabledItemIndexes}
         />

@@ -7,3 +7,11 @@
 .example-calendar-input {
   margin: 15px 0;
 }
+
+.cust-cell-cal.disabled {
+  cursor: not-allowed !important;
+}
+
+.cust-label-cal {
+  pointer-events: auto !important;
+}

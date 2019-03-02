@@ -215,7 +215,7 @@ class DateTimeForm extends React.Component<any, any> {
     if (this.state.hasOwnProperty(name)) {
       this.setState({ [name]: value });
     }
-  };
+  }
 }
 
 class DateTimeFormInline extends React.Component<any, any> {
@@ -237,13 +237,13 @@ class DateTimeFormInline extends React.Component<any, any> {
     return (
       <Form>
         <DateInput
-          inline
           className='example-calendar-input'
           value={this.state.date}
           name='date'
           onChange={this.handleChange}
+          disable={new Date('03/01/2019')}
           marked={[new Date('03/01/2019'), new Date('03/20/2019')]}
-          markedTip={{ '01/03/2019': 'XMast', '20/03/2019': 'Lebaran' }}
+          markedtip={[{ date: '01/03/2019', tip: 'XMast'},  {date: '20/03/2019', tip: 'Lebaran'}]}
           markColor='orange'
         />
         <br />
@@ -270,7 +270,7 @@ class DateTimeFormInline extends React.Component<any, any> {
           name='datesRange'
           onChange={this.handleChange}
           marked={[new Date('03/01/2019'), new Date('03/20/2019')]}
-          markedTip={{ '01/03/2019': 'XMast', '20/03/2019': 'Lebaran' }}
+          markedtip={[{ date: '01/03/2019', tip: 'XMast'},  {date: '20/03/2019', tip: 'Lebaran'}]}
           markColor='orange'
         />
         <br />
@@ -308,7 +308,7 @@ class DateTimeFormInline extends React.Component<any, any> {
     if (this.state.hasOwnProperty(name)) {
       this.setState({ [name]: value });
     }
-  };
+  }
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));

@@ -35,7 +35,7 @@ interface BodyProps {
   disabled?: number[];
   /** Array of element indexes in `data` array that should be displayed as marked. */
   marked?: number[];
-  markedTip?: any;
+  markedtip?: object[];
   /** The color of the mark that will be displayed on the calendar. */
   markColor?: string;
 }
@@ -51,7 +51,7 @@ function Body(props: BodyProps) {
     onCellHover,
     marked,
     markColor,
-    markedTip,
+    markedtip,
   } = props;
   const content = buildRows(data, width).map((row, rowIndex) => (
     <Table.Row key={`${rowIndex}${row[0]}`}>
@@ -62,12 +62,12 @@ function Body(props: BodyProps) {
           hovered={isHovered(rowIndex, width, itemIndex, hovered)}
           disabled={isDisabled(rowIndex, width, itemIndex, disabled)}
           marked={isMarked(rowIndex, width, itemIndex, marked)}
-          markedTip={getMarkedTip(
+          markedtip={getMarkedTip(
             rowIndex,
             width,
             itemIndex,
             marked,
-            markedTip,
+            markedtip,
           )}
           markColor={markColor}
           key={`${rowIndex * width + itemIndex}`}
@@ -180,14 +180,14 @@ function getMarkedTip(
   rowWidth: number,
   colIndex: number,
   markedIndexes: number[],
-  markedTip: any,
+  markedtip: any,
 ): string {
   if (isNil(markedIndexes) || markedIndexes.length === 0) {
     return null;
   }
   for (const markedIndex of markedIndexes) {
     if (rowIndex * rowWidth + colIndex === markedIndex) {
-      return markedTip[markedIndex];
+      return markedtip[markedIndex];
     }
   }
 

@@ -7,6 +7,7 @@ import React from 'react';
 
 import { RangeIndexes } from '../views/BaseCalendarView';
 import { SemanticCOLORS } from 'semantic-ui-react';
+import { MarkedType } from 'src/lib/CustomPropTypes';
 
 interface HandleChangeParams {
   value?: string;
@@ -87,7 +88,7 @@ export interface MinMaxValueProps {
 export interface MarkedValuesProps {
   /** Array of marked dates. */
   marked?: Moment[];
-  markedTip?: any;
+  markedtip?: MarkedType[];
   /** String specifying the mark color (Optional). */
   markColor?: SemanticCOLORS;
 }

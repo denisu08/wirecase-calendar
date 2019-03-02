@@ -53,7 +53,7 @@ interface CellProps {
   disabled?: boolean;
   /** Is cell marked. */
   marked?: boolean;
-  markedTip?: string;
+  markedtip?: string;
   /** Color of the mark. */
   markColor?: any;
 }
@@ -68,7 +68,7 @@ class Cell extends React.Component<CellProps, any> {
       onHover,
       hovered,
       marked,
-      markedTip,
+      markedtip,
       markColor,
       ...rest
     } = this.props;
@@ -81,16 +81,19 @@ class Cell extends React.Component<CellProps, any> {
     return (
       <Table.Cell
         {...rest}
+        className='cust-cell-cal'
         style={cellStyle}
         onMouseOver={this.onCellHover}
         onClick={this.onCellClick}
+        data-isdisabled={rest.disabled}
       >
         {marked ? (
           <Label
+            className='cust-label-cal'
             circular
             color={markColor}
             key={content}
-            data-tooltip={markedTip}
+            data-tooltip={markedtip}
             data-position={positionTooltip}
           >
             {content}
@@ -103,6 +106,9 @@ class Cell extends React.Component<CellProps, any> {
   }
 
   private onCellClick = (event) => {
+    if (event.currentTarget.dataset && event.currentTarget.dataset.isdisabled === 'true') {
+      return false;
+    }
     const { itemPosition, content } = this.props;
     invoke(this.props, 'onClick', event, {
       ...this.props,

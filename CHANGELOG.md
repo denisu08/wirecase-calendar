@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.14.7 2019-03-02
+
+- fix: change object to array of object for 'markedtip' parameter [`#106`](https://github.com/denisu08/wirecase-calendar/pull/106)
+
+## v0.14.6 2019-03-02
+
+- fix: add custom classname for cell calendar [`#105`](https://github.com/denisu08/wirecase-calendar/pull/105)
+
+## v0.14.5 2019-03-02
+
+- fix: refractor "markTip" into "marktip" [`#104`](https://github.com/denisu08/wirecase-calendar/pull/104)
+
+## v0.14.4 2019-03-02
+
+- fix: click disable cell still update value [`#103`](https://github.com/denisu08/wirecase-calendar/pull/103)
+
 ## v0.14.3 2019-03-02
 
 - feat: add marked tooltip [`#102`](https://github.com/denisu08/wirecase-calendar/pull/102)

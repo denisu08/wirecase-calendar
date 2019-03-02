@@ -67,7 +67,7 @@ class DayPicker extends SingleSelectionPicker<DayPickerProps>
       minDate,
       maxDate,
       marked,
-      markedTip,
+      markedtip,
       markColor,
       localization,
       ...rest
@@ -91,7 +91,7 @@ class DayPicker extends SingleSelectionPicker<DayPickerProps>
         disabledItemIndexes={this.getDisabledPositions()}
         activeItemIndex={this.getActiveCellPosition()}
         markedItemIndexes={this.getMarkedPositions()}
-        markedTipIndexes={this.getMarkedTipsPositions()}
+        markedtipIndexes={this.getMarkedTipsPositions()}
         markColor={markColor}
         localization={localization}
       />
@@ -178,10 +178,10 @@ class DayPicker extends SingleSelectionPicker<DayPickerProps>
       Return position numbers of dates that should be displayed as marked
       (position in array returned by `this.buildCalendarValues`).
     */
-    const { marked, markedTip } = this.props;
+    const { marked, markedtip } = this.props;
 
-    if (marked && markedTip) {
-      return getMarkedTips(marked, markedTip, this.state.date, DAYS_ON_PAGE);
+    if (marked && markedtip) {
+      return getMarkedTips(marked, markedtip, this.state.date, DAYS_ON_PAGE);
     } else {
       return [];
     }

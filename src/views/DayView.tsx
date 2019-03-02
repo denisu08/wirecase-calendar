@@ -38,7 +38,7 @@ class DayView extends BaseCalendarView<DayViewProps, any> {
       onMount,
       inline,
       markedItemIndexes,
-      markedTipIndexes,
+      markedtipIndexes,
       markColor,
       localization,
       ...rest
@@ -70,7 +70,7 @@ class DayView extends BaseCalendarView<DayViewProps, any> {
           active={activeItemIndex}
           disabled={disabledItemIndexes}
           marked={markedItemIndexes}
-          markedTip={markedTipIndexes}
+          markedtip={markedtipIndexes}
           markColor={markColor}
         />
       </Calendar>

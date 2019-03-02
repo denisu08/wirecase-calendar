@@ -1,4 +1,3 @@
-import isBoolean from 'lodash/isBoolean';
 import isNil from 'lodash/isNil';
 import invoke from 'lodash/invoke';
 import moment, { Moment } from 'moment';
@@ -166,7 +165,7 @@ class DateInput extends BaseInput<DateInputProps, DateInputState> {
       PropTypes.arrayOf(CustomPropTypes.momentObj),
       PropTypes.arrayOf(CustomPropTypes.dateObject),
     ]),
-    markedTip: PropTypes.any,
+    markedtip: PropTypes.array,
     markColor: PropTypes.string,
     /** Moment date localization. */
     localization: PropTypes.string,
@@ -248,15 +247,13 @@ class DateInput extends BaseInput<DateInputProps, DateInputState> {
       enable,
       inline,
       marked,
-      markedTip,
+      markedtip,
       markColor,
       localization,
       tabIndex,
       pickerWidth,
       pickerStyle,
     } = this.props;
-
-    // console.log('DateInput', markedTip);
 
     const pickerProps = {
       isPickerInFocus: this.isPickerInFocus,
@@ -308,7 +305,7 @@ class DateInput extends BaseInput<DateInputProps, DateInputState> {
         {...pickerProps}
         disable={disableParsed}
         marked={markedParsed}
-        markedTip={markedTip}
+        markedtip={markedtip}
         markColor={markColor}
       />
     );

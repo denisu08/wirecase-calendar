@@ -29,6 +29,11 @@ export function dateObject(props, propName, componentName) {
   return null;
 }
 
+export interface MarkedType {
+  date: string;
+  tip: string;
+}
+
 export default {
   momentObj,
   dateObject,

@@ -8,6 +8,7 @@ import {
 
 import { TimeFormat } from '../pickers/BasePicker';
 import moment = require('moment');
+import { MarkedType } from 'src/lib/CustomPropTypes';
 
 export interface BaseInputProps {
   [key: string]: any;
@@ -65,7 +66,7 @@ export interface BaseInputProps {
 export interface MarkedValuesProps {
   /** Array of marked dates. */
   marked?: Moment[] | Date[];
-  markedTip?: any;
+  markedtip?: MarkedType[];
   /** String specifying the mark color (Optional). */
   markColor?: SemanticCOLORS;
 }

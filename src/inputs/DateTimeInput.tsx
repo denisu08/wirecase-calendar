@@ -7,9 +7,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import CustomPropTypes from '../lib/CustomPropTypes';
-import {
-  BasePickerOnChangeData,
-} from '../pickers/BasePicker';
+import { BasePickerOnChangeData } from '../pickers/BasePicker';
 import DayPicker from '../pickers/dayPicker/DayPicker';
 import MonthPicker from '../pickers/monthPicker/MonthPicker';
 import HourPicker from '../pickers/timePicker/HourPicker';
@@ -35,17 +33,9 @@ import {
   buildValue,
   dateValueToString,
 } from './parse';
-import {
-  getDisabledMonths,
-  getDisabledYears,
-} from './shared';
+import { getDisabledMonths, getDisabledYears } from './shared';
 
-type CalendarMode =
-  | 'year'
-  | 'month'
-  | 'day'
-  | 'hour'
-  | 'minute';
+type CalendarMode = 'year' | 'month' | 'day' | 'hour' | 'minute';
 
 const nextMode: { [key: string]: CalendarMode } = {
   year: 'month',
@@ -71,14 +61,14 @@ function getPrevMode(currentMode: CalendarMode): CalendarMode {
   return prevMode[currentMode];
 }
 
-export interface DateTimeInputProps extends
-  BaseInputProps,
-  DateRelatedProps,
-  TimeRelatedProps,
-  MultimodeProps,
-  DisableValuesProps,
-  MarkedValuesProps,
-  MinMaxValueProps {
+export interface DateTimeInputProps
+  extends BaseInputProps,
+    DateRelatedProps,
+    TimeRelatedProps,
+    MultimodeProps,
+    DisableValuesProps,
+    MarkedValuesProps,
+    MinMaxValueProps {
   startMode?: 'year' | 'month' | 'day';
   /** Date and time divider. */
   divider?: string;
@@ -164,9 +154,7 @@ class DateTimeInput extends BaseInput<DateTimeInputProps, DateTimeInputState> {
     /** Preserve viewmode on focus? */
     preserveViewMode: PropTypes.bool,
     /** Display mode to start. */
-    startMode: PropTypes.oneOf([
-      'year', 'month', 'day',
-    ]),
+    startMode: PropTypes.oneOf(['year', 'month', 'day']),
     /** Date and time divider. */
     divider: PropTypes.string,
     /** If true, popup closes after selecting a date-time. */
@@ -192,6 +180,7 @@ class DateTimeInput extends BaseInput<DateTimeInputProps, DateTimeInputState> {
       PropTypes.arrayOf(CustomPropTypes.momentObj),
       PropTypes.arrayOf(CustomPropTypes.dateObject),
     ]),
+    markedtip: PropTypes.array,
     markColor: PropTypes.string,
     /** Moment date localization. */
     localization: PropTypes.string,
@@ -201,7 +190,11 @@ class DateTimeInput extends BaseInput<DateTimeInputProps, DateTimeInputState> {
 
   constructor(props: DateTimeInputProps) {
     super(props);
-    const parsedValue = parseValue(props.value, props.dateFormat, props.localization);
+    const parsedValue = parseValue(
+      props.value,
+      props.dateFormat,
+      props.localization,
+    );
     this.state = {
       mode: props.startMode,
       year: parsedValue ? parsedValue.year() : undefined,
@@ -256,31 +249,24 @@ class DateTimeInput extends BaseInput<DateTimeInputProps, DateTimeInputState> {
       underlying picker.
       Return undefined if none of these state fields has value.
     */
-    const {
-      year,
-      month,
-      date,
-      hour,
-      minute,
-    } = this.state;
-    if (!isNil(year)
-      || !isNil(month)
-      || !isNil(date)
-      || !isNil(hour)
-      || !isNil(minute)) {
+    const { year, month, date, hour, minute } = this.state;
+    if (
+      !isNil(year) ||
+      !isNil(month) ||
+      !isNil(date) ||
+      !isNil(hour) ||
+      !isNil(minute)
+    ) {
       return moment({ year, month, date, hour, minute });
     }
   }
 
   private getDateTimeFormat(): string {
-    const {
-      dateFormat,
-      divider,
-      timeFormat,
-      dateTimeFormat,
-    } = this.props;
+    const { dateFormat, divider, timeFormat, dateTimeFormat } = this.props;
 
-    return dateTimeFormat || `${dateFormat}${divider}${TIME_FORMAT[timeFormat]}`;
+    return (
+      dateTimeFormat || `${dateFormat}${divider}${TIME_FORMAT[timeFormat]}`
+    );
   }
 
   private getPicker(): React.ReactNode {
@@ -311,15 +297,28 @@ class DateTimeInput extends BaseInput<DateTimeInputProps, DateTimeInputState> {
       closePopup: this.closePopup,
       onChange: this.handleSelect,
       onHeaderClick: this.switchToPrevMode,
-      initializeWith: buildValue(this.parseInternalValue(), initialDate, localization, dateTimeFormat),
+      initializeWith: buildValue(
+        this.parseInternalValue(),
+        initialDate,
+        localization,
+        dateTimeFormat,
+      ),
       value: buildValue(value, null, localization, dateTimeFormat, null),
       minDate: parseValue(minDate, dateTimeFormat, localization),
       maxDate: parseValue(maxDate, dateTimeFormat, localization),
       localization,
     };
-    const disableParsed = parseArrayOrValue(disable, dateTimeFormat, localization);
+    const disableParsed = parseArrayOrValue(
+      disable,
+      dateTimeFormat,
+      localization,
+    );
     const { mode } = this.state;
-    const markedParsed = parseArrayOrValue(marked, dateTimeFormat, localization);
+    const markedParsed = parseArrayOrValue(
+      marked,
+      dateTimeFormat,
+      localization,
+    );
     if (mode === 'year') {
       return (
         <YearPicker
@@ -388,8 +387,10 @@ class DateTimeInput extends BaseInput<DateTimeInputProps, DateTimeInputState> {
     tick(this.switchToPrevModeUndelayed);
   }
 
-  private handleSelect = (e: React.SyntheticEvent<HTMLElement>,
-                          { value }: BasePickerOnChangeData): void => {
+  private handleSelect = (
+    e: React.SyntheticEvent<HTMLElement>,
+    { value }: BasePickerOnChangeData,
+  ): void => {
     tick(this.handleSelectUndelayed, e, { value });
   }
 
@@ -399,28 +400,31 @@ class DateTimeInput extends BaseInput<DateTimeInputProps, DateTimeInputState> {
     }
   }
 
-  private handleSelectUndelayed = (e: React.SyntheticEvent<HTMLElement>,
-                                   { value }: BasePickerOnChangeData): void => {
+  private handleSelectUndelayed = (
+    e: React.SyntheticEvent<HTMLElement>,
+    { value }: BasePickerOnChangeData,
+  ): void => {
     if (this.props.closable && this.state.mode === 'minute') {
       this.closePopup();
     }
-    this.setState((prevState) => {
-      const {
-        mode,
-      } = prevState;
-      if (mode === 'minute') {
-        const outValue = moment(value).format(this.getDateTimeFormat());
-        invoke(this.props, 'onChange', e, { ...this.props, value: outValue });
-      }
+    this.setState(
+      (prevState) => {
+        const { mode } = prevState;
+        if (mode === 'minute') {
+          const outValue = moment(value).format(this.getDateTimeFormat());
+          invoke(this.props, 'onChange', e, { ...this.props, value: outValue });
+        }
 
-      return {
-        year: value.year,
-        month: value.month,
-        date: value.date,
-        hour: value.hour,
-        minute: value.minute,
-      };
-    }, () => this.state.mode !== 'minute' && this.switchToNextMode());
+        return {
+          year: value.year,
+          month: value.month,
+          date: value.date,
+          hour: value.hour,
+          minute: value.minute,
+        };
+      },
+      () => this.state.mode !== 'minute' && this.switchToNextMode(),
+    );
   }
 
   /** Keeps internal state in sync with input field value. */

@@ -10,7 +10,7 @@ import first from 'lodash/first';
 import sortBy from 'lodash/sortBy';
 import slice from 'lodash/slice';
 import find from 'lodash/find';
-
+import { MarkedType } from 'src/lib/CustomPropTypes';
 import { Moment } from 'moment';
 
 /** Build days to fill page. */
@@ -181,7 +181,7 @@ export function getMarkedDays(
 
 export function getMarkedTips(
   marked: Moment[],
-  markedTip: any,
+  markedtip: MarkedType[],
   currentDate: Moment,
   daysOnPage: number,
 ): any {
@@ -206,14 +206,19 @@ export function getMarkedTips(
     allDatesNumb[i] = 0;
   }
 
+  const markTipOfDate = [];
+  markedtip.forEach((tip) => markTipOfDate.push(tip.date));
+
   const markedIndexes = marked
     .filter(
       (date) =>
         date.isSame(currentDate, 'month') &&
-        date.format('DD/MM/YYYY') in markedTip,
+        markTipOfDate.includes(date.format('DD/MM/YYYY')),
     )
     .map((date) => {
-      return { date: date.date(), text: markedTip[date.format('DD/MM/YYYY')] };
+      const markTip = markedtip.filter((tip) => tip.date === date.format('DD/MM/YYYY'));
+
+      return { date: date.date(), text: markTip[0].tip };
     })
     .map((date) => {
       return { date: allDatesNumb.indexOf(date.date), text: date.text };
