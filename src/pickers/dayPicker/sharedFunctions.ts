@@ -216,7 +216,9 @@ export function getMarkedTips(
         markTipOfDate.includes(date.format('DD/MM/YYYY')),
     )
     .map((date) => {
-      const markTip = markedtip.filter((tip) => tip.date === date.format('DD/MM/YYYY'));
+      const markTip = markedtip.filter(
+        (tip) => tip.date === date.format('DD/MM/YYYY'),
+      );
 
       return { date: date.date(), text: markTip[0].tip };
     })
@@ -304,5 +306,9 @@ export function getInitialDatePosition(
     return res.position;
   }
 
-  return selectable[0].position;
+  if (selectable && selectable.length > 0) {
+    return selectable[0].position;
+  }
+
+  return 0;
 }

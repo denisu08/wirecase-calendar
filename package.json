@@ -1,6 +1,6 @@
 {
   "name": "wirecase-calendar",
-  "version": "0.14.7",
+  "version": "0.14.8",
   "description": "date/time picker built from semantic-ui elements",
   "main": "dist/index.js",
   "scripts": {
